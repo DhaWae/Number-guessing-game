@@ -22,7 +22,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     int numberToGuess;
     int amountOfGuesses;
     Boolean firstgame = true;
-    String fileContent = "Name | Guesses | Time | Diffiuclty \n";
+    String fileContent = "";
     int highscoreRating;
     //gör att olika tid och difficulty ger olika poäng och ranka de i highscore list efter det
     public ActualGameGUI() {
@@ -254,19 +254,24 @@ public class ActualGameGUI extends javax.swing.JFrame {
         
         
     }
+    String data = "";
     public void readFile(String fileName){
+        //data = "";
         try {
-            File myFile = new File(fileName);
-            
-            Scanner scan = new Scanner(myFile);
-            
-            while (scan.hasNextLine()) {
-                fileContent += scan.nextLine() + "\n";
+            File myObj = new File("highscores.txt");
+            Scanner myReader = new Scanner(myObj);
+
+            while (myReader.hasNextLine()) {
+                data += myReader.nextLine() + "\n";
+                //System.out.println(data);
             }
-            jTextArea2.setText(fileContent);
-        } catch (FileNotFoundException ex) {
-            jTextArea2.setText("Error reading file!");
+            jTextArea2.setText(data);
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
+
     }
     private void guessingInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessingInputActionPerformed
         // TODO add your handling code here:
@@ -292,21 +297,32 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 }
                 if(amountOfGuesses < Integer.parseInt(highscoreLabel.getText())){
                     highscoreLabel.setText(Integer.toString(amountOfGuesses));
-                }    
-                FileWriter myWriter;
+                }
+                String[] outpt = data.split(",");
+
+                System.out.println(Arrays.toString(outpt));
+                //jTextArea2.setText("");
+                //readFile("highscores.txt");
+                jTextArea2.setText(data + "nytt highscore");
+
+                /*FileWriter myWriter;
+                String outputtext = "";
                 try {
-                    
-                    fileContent += name.getText() + " | " + amountOfGuesses +"\n";
+                    ArrayList<String> highscore = new ArrayList<>();
+                    highscore.add(amountOfGuesses + name.getText());
+                    //fileContent += name.getText() + " | " + amountOfGuesses +"\n";
                     myWriter = new FileWriter("highscores.txt");
-                    //Scanner scan = new Scanner("highscores.txt");
-                    
-                    
+                    Scanner scan = new Scanner("highscores.txt");
+                    for (String str : highscore) {
+                        fileContent += str + "\n" ;
+                    }
+                    System.out.println(fileContent);
                     myWriter.write(fileContent);
                     myWriter.close();
                     readFile("highscores.txt");
                 } catch (IOException ex) {
                     Logger.getLogger(ActualGameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
                 
                 
                 //sätt highscore
