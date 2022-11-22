@@ -1,0 +1,2 @@
+Name | Guesses | Time | Diffiuclty 
+Enter name here | 3
