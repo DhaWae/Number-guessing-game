@@ -267,17 +267,12 @@ public class GameGUI extends javax.swing.JFrame {
         gameGUI.readFile("highscores.txt");
         Random random = new Random();
             //String difficulty = difficultyTransfer;
-            if(difficultyTransfer == "easy"){
-                gameGUI.numberToGuess = random.nextInt(1,11);
-            
-            } else if(difficultyTransfer == "medium"){
-                gameGUI.numberToGuess = random.nextInt(1,101);
-               
-            } else if(difficultyTransfer == "hard"){
-                gameGUI.numberToGuess = random.nextInt(1,1001);
-            } else if(difficultyTransfer == "IMPOSSIBLE"){
-                gameGUI.numberToGuess = random.nextInt(1,10001);
-            }
+        switch (difficultyTransfer) {
+            case "easy" -> gameGUI.numberToGuess = random.nextInt(1, 11);
+            case "medium" -> gameGUI.numberToGuess = random.nextInt(1, 101);
+            case "hard" -> gameGUI.numberToGuess = random.nextInt(1, 1001);
+            case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
+        }
         System.out.println(gameGUI.numberToGuess);
         
         setVisible(false);
