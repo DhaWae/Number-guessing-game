@@ -2,12 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import java.io.IOException;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
-import java.io.FileWriter; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -30,6 +27,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     public ActualGameGUI() {
 
         initComponents();
+
 
     }
 
@@ -56,6 +54,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
     }
     ArrayList<String> highScore = new ArrayList<String>();
     ArrayList<Integer> highScoreData = new ArrayList<Integer>();
+    HashMap<Integer, String> playerData = new HashMap<Integer, String>();
+
     public void readHighscoreData() throws FileNotFoundException {
         Scanner s = new Scanner(new File("highscoredata.txt"));
         while (s.hasNext()){
@@ -66,7 +66,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     public void writeHighscoreData() throws IOException {
         FileWriter myWriter = new FileWriter("highscoredata.txt");
         for (int i = 0; i < highScoreData.toArray().length ; i++){
-            myWriter.write(Integer.toString(highScoreData.get(i)));
+            myWriter.write(highScoreData.get(i));
             myWriter.close();
         }
     }
@@ -85,6 +85,45 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
         jTextArea2.setText(hst);
     }
+
+    public void printHashMapKeySet(){
+        for (Integer i : playerData.keySet()) {
+            System.out.println("key: " + i);
+        }
+    }
+    public void printHashMapValue(){
+        for (Integer i : playerData.keySet()) {
+            System.out.println("value: " + playerData.get(i));
+        }
+    }
+
+    public void readHashMap() throws IOException {
+        String filePath = "highscores.txt";
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader("highscores.txt"));
+        while ((line = reader.readLine()) != null)
+        {
+            String[] parts = line.split(":", 2);
+            if (parts.length >= 2)
+            {
+                String key = parts[0];
+                String value = parts[1];
+                playerData.put(Integer.valueOf(key), value);
+            } else {
+                System.out.println("ignoring line: " + line);
+            }
+        }
+        String outputText = "";
+        for (Integer key : playerData.keySet())
+        {
+            System.out.println(key + ":" + playerData.get(key));
+            outputText += key + ":" + playerData.get(key) + "\n";
+        }
+        jTextArea2.setText(outputText);
+        reader.close();
+    }
+
+
 
 
     /**
@@ -345,17 +384,21 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 }
                 //String[] outpt = data.split("\\|");
                 // do a highscore data file and read in values here
-                readHighscoreData();
+
                 //readHighscore();
                 highScore.add(amountOfGuesses + name.getText());
-                System.out.println(highScoreData);
-                highScoreData.add(amountOfGuesses);
-                System.out.println(highScoreData);
-
+                //System.out.println(highScoreData);
+                //highScoreData.add(amountOfGuesses);
+                //System.out.println(highScoreData);
+                //System.out.println("hashmap" + playerData);
+                playerData.put(amountOfGuesses, name.getText());
+                readHashMap();
+                printHashMapValue();
+                printHashMapKeySet();
                 //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt
                 //writeHighscore();
 
-                System.out.println(highScore);
+                //System.out.println(highScore);
                 //for (int i = 0; i < highScore.toArray().length ; i++)
                 //    jTextArea2.setText(data + i);
                     // System.out.println(highScore.get(i));

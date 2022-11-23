@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 
@@ -66,7 +67,11 @@ public class GameGUI extends javax.swing.JFrame {
         playButton.setText("PLAY");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
+                try {
+                    playButtonActionPerformed(evt);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -260,7 +265,7 @@ public class GameGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_easyBtnActionPerformed
 
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws FileNotFoundException {//GEN-FIRST:event_playButtonActionPerformed
         //jPanel1.setVisible(false);
         gameGUI.createHighscoreFile();
         //gameGUI.fileContent = "Name | Guesses | Time | Diffiuclty \n";
@@ -274,7 +279,7 @@ public class GameGUI extends javax.swing.JFrame {
             case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
         }
         System.out.println(gameGUI.numberToGuess);
-        
+        gameGUI.readHighscoreData();
         setVisible(false);
         gameGUI.setVisible(true);
         gameGUI.difficultyLabel.setText(difficultyTransfer);
