@@ -5,6 +5,7 @@
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.io.FileWriter; 
 import java.util.logging.Level;
@@ -18,33 +19,73 @@ public class ActualGameGUI extends javax.swing.JFrame {
     /**
      * Creates new form ActualGameGUI
      */
-    
+
     int numberToGuess;
     int amountOfGuesses;
     Boolean firstgame = true;
     String fileContent = "";
     int highscoreRating;
+
     //gör att olika tid och difficulty ger olika poäng och ranka de i highscore list efter det
     public ActualGameGUI() {
-        
+
         initComponents();
-        
+
     }
-    
+
     public void createHighscoreFile() {
-    
-    File highscore = new File("highscores.txt");
-        
+
+        File highscore = new File("highscores.txt");
+
         try {
             highscore.createNewFile();
-             //highscore.createNewFile()) {
-            
+            //highscore.createNewFile()) {
+
         } catch (IOException ex) {
-            
+
         }
-        
-        
+
+
+        File highscoredata = new File("highscoredata.txt");
+        try {
+            highscoredata.createNewFile();
+        } catch (IOException ex) {
+
+        }
+
     }
+    ArrayList<String> highScore = new ArrayList<String>();
+    ArrayList<Integer> highScoreData = new ArrayList<Integer>();
+    public void readHighscoreData() throws FileNotFoundException {
+        Scanner s = new Scanner(new File("highscoredata.txt"));
+        while (s.hasNext()){
+            highScoreData.add(Integer.valueOf(s.next()));
+        }
+    }
+
+    public void writeHighscoreData() throws IOException {
+        FileWriter myWriter = new FileWriter("highscoredata.txt");
+        for (int i = 0; i < highScoreData.toArray().length ; i++){
+            myWriter.write(Integer.toString(highScoreData.get(i)));
+            myWriter.close();
+        }
+    }
+    public void readHighscore() throws FileNotFoundException {
+        Scanner s = new Scanner(new File("highscoredata.txt"));
+        while (s.hasNext()){
+            highScore.add((s.next()));
+        }
+        // INTE HUNNIT TESTA "N KAN VARA FEL MED METODEN
+    }
+    public void writeHighscore(){
+        String hst = "";
+        for (int i = 0; i < highScore.toArray().length ; i++){
+            hst += String.valueOf(highScore.get(i)) + "\n";
+            //jTextArea2.setText(hst + String.valueOf(highScore.get(i)) + "\n");
+        }
+        jTextArea2.setText(hst);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +138,11 @@ public class ActualGameGUI extends javax.swing.JFrame {
         guessBtn.setText("Guess");
         guessBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guessBtnActionPerformed(evt);
+                try {
+                    guessBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -277,7 +322,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_guessingInputActionPerformed
 
-    private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessBtnActionPerformed
+    private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_guessBtnActionPerformed
 
             if (Integer.parseInt(guessingInput.getText()) > numberToGuess){
                 feedbackArea.setText("You are too high!");
@@ -298,12 +343,27 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 if(amountOfGuesses < Integer.parseInt(highscoreLabel.getText())){
                     highscoreLabel.setText(Integer.toString(amountOfGuesses));
                 }
-                String[] outpt = data.split(",");
+                //String[] outpt = data.split("\\|");
+                // do a highscore data file and read in values here
+                readHighscoreData();
+                //readHighscore();
+                highScore.add(amountOfGuesses + name.getText());
+                System.out.println(highScoreData);
+                highScoreData.add(amountOfGuesses);
+                System.out.println(highScoreData);
 
-                System.out.println(Arrays.toString(outpt));
+                //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt
+                //writeHighscore();
+
+                System.out.println(highScore);
+                //for (int i = 0; i < highScore.toArray().length ; i++)
+                //    jTextArea2.setText(data + i);
+                    // System.out.println(highScore.get(i));
+
+                //System.out.println(Arrays.toString(outpt));
                 //jTextArea2.setText("");
                 //readFile("highscores.txt");
-                jTextArea2.setText(data + "nytt highscore");
+                //jTextArea2.setText(data + "nytt highscore");
 
                 /*FileWriter myWriter;
                 String outputtext = "";
