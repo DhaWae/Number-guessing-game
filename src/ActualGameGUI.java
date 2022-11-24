@@ -96,7 +96,10 @@ public class ActualGameGUI extends javax.swing.JFrame {
             System.out.println("value: " + playerData.get(i));
         }
     }
-
+    /*Metoden använder BufferedReader för att läsa highscore-filen rad för rad. För varje rad använder
+    * den split metoden på första förekomsten av ":" och om det inte finns ignoreras raden.
+    * På detta sätt får jag in det från textfilen och sätter tillbaks det i hashmapen playerData
+    * för att vi sedan har datan där för sortering. */
     public void readHashMap() throws IOException {
         String filePath = "highscores.txt";
         String line;
