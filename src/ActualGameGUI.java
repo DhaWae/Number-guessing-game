@@ -52,10 +52,10 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
 
     }
-    ArrayList<String> highScore = new ArrayList<String>();
-    ArrayList<Integer> highScoreData = new ArrayList<Integer>();
+    //ArrayList<String> highScore = new ArrayList<String>();
+    //ArrayList<Integer> highScoreData = new ArrayList<Integer>();
     HashMap<Integer, String> playerData = new HashMap<Integer, String>();
-
+    /*
     public void readHighscoreData() throws FileNotFoundException {
         Scanner s = new Scanner(new File("highscoredata.txt"));
         while (s.hasNext()){
@@ -70,6 +70,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
             myWriter.close();
         }
     }
+
+
     public void readHighscore() throws FileNotFoundException {
         Scanner s = new Scanner(new File("highscoredata.txt"));
         while (s.hasNext()){
@@ -85,15 +87,24 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
         jTextArea2.setText(hst);
     }
-
+     *///metoder som användes när jag inte använde mig av en hashmap
+    //skriver ut hashmapens key
     public void printHashMapKeySet(){
         for (Integer i : playerData.keySet()) {
             System.out.println("key: " + i);
         }
     }
+    //skriver ut hashmapens value
     public void printHashMapValue(){
         for (Integer i : playerData.keySet()) {
             System.out.println("value: " + playerData.get(i));
+        }
+    }
+    public void writeHighscoreData() throws IOException {
+        FileWriter myWriter = new FileWriter("highscoredata.txt");
+        for (int i = 0; i < playerData.size() ; i++){
+            myWriter.write(jTextArea2.getText());
+            myWriter.close();
         }
     }
     /*Metoden använder BufferedReader för att läsa highscore-filen rad för rad. För varje rad använder
@@ -389,13 +400,14 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 // do a highscore data file and read in values here
 
                 //readHighscore();
-                highScore.add(amountOfGuesses + name.getText());
+                //highScore.add(amountOfGuesses + name.getText());
                 //System.out.println(highScoreData);
                 //highScoreData.add(amountOfGuesses);
                 //System.out.println(highScoreData);
                 //System.out.println("hashmap" + playerData);
                 playerData.put(amountOfGuesses, name.getText());
                 readHashMap();
+                //writeHighscoreData();
                 printHashMapValue();
                 printHashMapKeySet();
                 //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt

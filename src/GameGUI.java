@@ -279,7 +279,7 @@ public class GameGUI extends javax.swing.JFrame {
             case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
         }
         System.out.println(gameGUI.numberToGuess);
-        gameGUI.readHighscoreData();
+        //gameGUI.readHighscoreData();
         setVisible(false);
         gameGUI.setVisible(true);
         gameGUI.difficultyLabel.setText(difficultyTransfer);
