@@ -209,7 +209,11 @@ public class ActualGameGUI extends javax.swing.JFrame {
         guessBtn.setText("Guess");
         guessBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guessBtnActionPerformed(evt);
+                try {
+                    guessBtnActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
