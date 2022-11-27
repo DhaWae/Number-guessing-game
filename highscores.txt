@@ -1,11 +1,27 @@
 Enter name here | 3s | Guesses:1
 Enter name here | 2s | Guesses:1
+null | 5s | Guesses:1
+s | 2s | Guesses:1
+d | 1s | Guesses:1
+a | 8s | Guesses:1
 Enter name here | 9s | Guesses:2
 es | 5s | Guesses:2
 es | 4s | Guesses:2
 Jesper1234 | 3s | Guesses:2
+null | 9s | Guesses:2
+s | 5s | Guesses:2
+s | 4s | Guesses:2
+null | 2s | Guesses:2
+null | 3s | Guesses:2
+t | 3s | Guesses:2
+null | 8s | Guesses:2
+null | 4s | Guesses:2
+SEse | 8s | Guesses:2
+s | 3s | Guesses:2
 asdasdas | 9s | Guesses:3
 Enter name here | 4s | Guesses:5
+ | 3s | Guesses:5
 Enter name fffhere | 8s | Guesses:6
 Enter name here | 15s | Guesses:6
+Jesper | 15s | Guesses:6
 Enter name here | 6s | Guesses:8
