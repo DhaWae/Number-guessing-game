@@ -7,6 +7,8 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 /**
  *
  * @author jesper.rudegran
@@ -56,7 +58,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     }
     //ArrayList<String> highScore = new ArrayList<String>();
     //ArrayList<Integer> highScoreData = new ArrayList<Integer>();
-    HashMap<String, Integer> playerData = new HashMap<String, Integer>();
+    HashMap<String, Integer> playerData = new LinkedHashMap<String, Integer>();
     /*
     public void readHighscoreData() throws FileNotFoundException {
         Scanner s = new Scanner(new File("highscoredata.txt"));
@@ -103,11 +105,11 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
     }
     public void writeHighscoreData() throws IOException {
-        FileWriter myWriter = new FileWriter("highscoredata.txt");
-        for (int i = 0; i < playerData.size() ; i++){
-            myWriter.write(jTextArea2.getText());
-            myWriter.close();
-        }
+        FileWriter myWriter = new FileWriter("highscores.txt");
+
+        myWriter.write(jTextArea2.getText());
+        myWriter.close();
+
     }
     /*Metoden använder BufferedReader för att läsa highscore-filen rad för rad. För varje rad använder
     * den split metoden på första förekomsten av ":" och om det inte finns ignoreras raden.
@@ -129,17 +131,35 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 System.out.println("ignoring line: " + line);
             }
         }
-        String outputText = "";
+/*        String outputText = "";
         for (String key : playerData.keySet())
         {
             System.out.println(key + ":" + playerData.get(key));
             outputText += key + ":" + playerData.get(key) + "\n";
         }
         jTextArea2.setText(outputText);
-        reader.close();
+        reader.close();*/
     }
 
+    /* Jag sorterar hashmappen genom att g;ra en ny map d'r jag sorterar det dess value som 'r en int och g;r det till en linked hash map*/
+    Map<String, Integer> sortedMap;
+    //Map<String, Integer> sortedMap;
     public void sortHashMap(){
+        sortedMap = playerData.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> { throw new AssertionError(); },
+                        LinkedHashMap::new
+                ));
+        String outputText = "";
+        for (String key : sortedMap.keySet())
+        {
+            System.out.println(key + ":" + sortedMap.get(key));
+            outputText += key + ":" + sortedMap.get(key) + "\n";
+        }
+        jTextArea2.setText(outputText);
 
     }
 
@@ -413,10 +433,14 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 //System.out.println(highScoreData);
                 //System.out.println("hashmap" + playerData);
                 playerData.put(name.getText() + " | "+elapsedTime + "s" + " | Guesses", amountOfGuesses);
-                readHashMap();
+                //readHashMap();
+                sortHashMap();
+                writeHighscoreData();
                 //writeHighscoreData();
                 printHashMapValue();
                 printHashMapKeySet();
+                System.out.println(sortedMap.getClass());
+                //sortHashMap();
                 //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt
                 //writeHighscore();
 
