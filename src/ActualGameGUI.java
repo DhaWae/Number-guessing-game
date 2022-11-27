@@ -174,14 +174,12 @@ public class ActualGameGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        guessingInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         guessBtn = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        feedbackArea = new javax.swing.JTextArea();
         guessAmount = new javax.swing.JLabel();
         highscore = new javax.swing.JLabel();
         difficultyLabel = new javax.swing.JLabel();
@@ -191,9 +189,10 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         guessAmountLabel = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         highscoreLabel = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
+        guessingInput = new javax.swing.JSpinner();
+        feedbackArea = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,13 +201,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Make your guess below");
 
-        guessingInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guessingInputActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Give up");
+        jButton1.setText("New Difficulty");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Feedback:");
@@ -216,17 +209,9 @@ public class ActualGameGUI extends javax.swing.JFrame {
         guessBtn.setText("Guess");
         guessBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    guessBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                guessBtnActionPerformed(evt);
             }
         });
-
-        feedbackArea.setColumns(20);
-        feedbackArea.setRows(5);
-        jScrollPane2.setViewportView(feedbackArea);
 
         guessAmount.setForeground(new java.awt.Color(255, 255, 255));
         guessAmount.setText("Guess amount:");
@@ -257,13 +242,6 @@ public class ActualGameGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("New Difficulty");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         highscoreLabel.setForeground(new java.awt.Color(255, 255, 255));
         highscoreLabel.setText("0");
 
@@ -271,6 +249,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
+            }
+        });
+
+        feedbackArea.setText(" ");
+        feedbackArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                feedbackAreaActionPerformed(evt);
             }
         });
 
@@ -282,35 +267,36 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(highscore)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(highscoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(guessingInput, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addComponent(guessBtn))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(difficultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(feedbackArea, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(guessAmount)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(guessAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(guessAmount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guessAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(highscore)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(highscoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(guessingInput))
-                            .addGap(12, 12, 12)
-                            .addComponent(guessBtn))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(difficultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(15, 15, 15)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,13 +311,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guessingInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guessBtn))
+                            .addComponent(guessBtn)
+                            .addComponent(guessingInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(feedbackArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(guessAmount)
                             .addComponent(guessAmountLabel)
@@ -344,11 +330,11 @@ public class ActualGameGUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(difficultyLabel)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
                             .addComponent(jButton2)
-                            .addComponent(jButton3)))
+                            .addComponent(jButton1))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(31, Short.MAX_VALUE)
                         .addComponent(jLabel6)
@@ -396,17 +382,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
 
     }
-    private void guessingInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessingInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guessingInputActionPerformed
-
     private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_guessBtnActionPerformed
-
-            if (Integer.parseInt(guessingInput.getText()) > numberToGuess){
+        int inputValue = (int) guessingInput.getValue();
+            if (inputValue > numberToGuess){
                 feedbackArea.setText("You are too high!");
                 amountOfGuesses += 1;
                 guessAmountLabel.setText(Integer.toString(amountOfGuesses));
-            }else if(Integer.parseInt(guessingInput.getText()) < numberToGuess){
+            }else if(inputValue < numberToGuess){
                 feedbackArea.setText("You are too low!");
                 amountOfGuesses += 1;
                 guessAmountLabel.setText(Integer.toString(amountOfGuesses));
@@ -504,13 +486,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
+
+    private void feedbackAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feedbackAreaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -549,23 +531,22 @@ public class ActualGameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel difficultyLabel;
-    private javax.swing.JTextArea feedbackArea;
+    private javax.swing.JTextField feedbackArea;
     private javax.swing.JLabel guessAmount;
     private javax.swing.JLabel guessAmountLabel;
     private javax.swing.JButton guessBtn;
-    private javax.swing.JTextField guessingInput;
+    private javax.swing.JSpinner guessingInput;
     private javax.swing.JLabel highscore;
     private javax.swing.JLabel highscoreLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField name;
     // End of variables declaration//GEN-END:variables
