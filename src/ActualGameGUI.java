@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,6 +194,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         guessingInput = new javax.swing.JSpinner();
         feedbackArea = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,11 +212,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         guessBtn.setText("Guess");
         guessBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    guessBtnActionPerformed(evt);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                guessBtnActionPerformed(evt);
             }
         });
 
@@ -226,8 +225,9 @@ public class ActualGameGUI extends javax.swing.JFrame {
         difficultyLabel.setForeground(new java.awt.Color(255, 255, 255));
         difficultyLabel.setText("   ");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Highscores:");
+        jLabel6.setText("Highscores");
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -263,48 +263,62 @@ public class ActualGameGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Name | Time | Guesses");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(highscore)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(highscoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(guessingInput, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addComponent(guessBtn))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(difficultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(feedbackArea, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(guessAmount)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(guessAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(highscore)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(highscoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel1)
+                                        .addComponent(guessingInput, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(38, 38, 38)
+                                    .addComponent(guessBtn))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(69, 69, 69)
+                                    .addComponent(difficultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(feedbackArea, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(85, 85, 85)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(guessAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton2)
                                     .addGap(18, 18, 18)
-                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jButton1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(guessAmount)
+                                .addGap(218, 218, 218)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(15, 15, 15)))
+                        .addContainerGap()
+                        .addComponent(jSeparator1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(130, 130, 130))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,30 +335,37 @@ public class ActualGameGUI extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(feedbackArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(guessAmount)
-                            .addComponent(guessAmountLabel)
-                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(40, 40, 40)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(guessAmountLabel)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(guessAmount)
+                                    .addComponent(jLabel3))))
+                        .addGap(8, 8, 8)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(highscore)
                             .addComponent(highscoreLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(difficultyLabel)
-                            .addComponent(jLabel3))
+                        .addComponent(difficultyLabel)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton1))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 11, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(31, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel4))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,12 +376,129 @@ public class ActualGameGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void feedbackAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feedbackAreaActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        amountOfGuesses = 0;
+        guessAmountLabel.setText("0");
+        Random random = new Random();
+        if(difficultyLabel.getText() == "easy"){
+            numberToGuess = random.nextInt(1,2);
+        } else if(difficultyLabel.getText() == "medium"){
+            numberToGuess = random.nextInt(1,101);
+
+        } else if(difficultyLabel.getText() == "hard"){
+            numberToGuess = random.nextInt(1,1001);
+        } else if(difficultyLabel.getText() == "IMPOSSIBLE"){
+            numberToGuess = random.nextInt(1,10001);
+        }
+        feedbackArea.setText("Good luck!");
+        startTime = System.currentTimeMillis();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessBtnActionPerformed
+        int inputValue = (int) guessingInput.getValue();
+        if (inputValue > numberToGuess){
+            feedbackArea.setText("You are too high!");
+            amountOfGuesses += 1;
+            guessAmountLabel.setText(Integer.toString(amountOfGuesses));
+        }else if(inputValue < numberToGuess){
+            feedbackArea.setText("You are too low!");
+            amountOfGuesses += 1;
+            guessAmountLabel.setText(Integer.toString(amountOfGuesses));
+        }else{
+
+            elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
+
+            feedbackArea.setText("You are correct! Congratulations");
+            String name = JOptionPane.showInputDialog(this, "Enter your name:");
+            amountOfGuesses += 1;
+            guessAmountLabel.setText(Integer.toString(amountOfGuesses));
+            if(firstgame){
+                highscoreLabel.setText(Integer.toString(amountOfGuesses));
+                firstgame = false;
+            }
+            if(amountOfGuesses < Integer.parseInt(highscoreLabel.getText())){
+                highscoreLabel.setText(Integer.toString(amountOfGuesses));
+            }
+            //String[] outpt = data.split("\\|");
+            // do a highscore data file and read in values here
+
+            //readHighscore();
+            //highScore.add(amountOfGuesses + name.getText());
+            //System.out.println(highScoreData);
+            //highScoreData.add(amountOfGuesses);
+            //System.out.println(highScoreData);
+            //System.out.println("hashmap" + playerData);
+            playerData.put(name + " | "+elapsedTime + "s" + " | Guesses", amountOfGuesses);
+            //readHashMap();
+            sortHashMap();
+            try {
+                writeHighscoreData();
+            } catch (IOException ex) {
+                Logger.getLogger(ActualGameGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //writeHighscoreData();
+            printHashMapValue();
+            printHashMapKeySet();
+            System.out.println(sortedMap.getClass());
+            //sortHashMap();
+            //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt
+            //writeHighscore();
+
+            //System.out.println(highScore);
+            //for (int i = 0; i < highScore.toArray().length ; i++)
+            //    jTextArea2.setText(data + i);
+            // System.out.println(highScore.get(i));
+
+            //System.out.println(Arrays.toString(outpt));
+            //jTextArea2.setText("");
+            //readFile("highscores.txt");
+            //jTextArea2.setText(data + "nytt highscore");
+
+            /*FileWriter myWriter;
+            String outputtext = "";
+            try {
+                ArrayList<String> highscore = new ArrayList<>();
+                highscore.add(amountOfGuesses + name.getText());
+                //fileContent += name.getText() + " | " + amountOfGuesses +"\n";
+                myWriter = new FileWriter("highscores.txt");
+                Scanner scan = new Scanner("highscores.txt");
+                for (String str : highscore) {
+                    fileContent += str + "\n" ;
+                }
+                System.out.println(fileContent);
+                myWriter.write(fileContent);
+                myWriter.close();
+                readFile("highscores.txt");
+            } catch (IOException ex) {
+                Logger.getLogger(ActualGameGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+
+            //sätt highscore
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guessBtnActionPerformed
     Boolean generateNumber = false;
     public void generateNumber(){
         
@@ -386,118 +524,6 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
 
     }
-    private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_guessBtnActionPerformed
-        int inputValue = (int) guessingInput.getValue();
-            if (inputValue > numberToGuess){
-                feedbackArea.setText("You are too high!");
-                amountOfGuesses += 1;
-                guessAmountLabel.setText(Integer.toString(amountOfGuesses));
-            }else if(inputValue < numberToGuess){
-                feedbackArea.setText("You are too low!");
-                amountOfGuesses += 1;
-                guessAmountLabel.setText(Integer.toString(amountOfGuesses));
-            }else{
-
-                elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
-                feedbackArea.setText("You are correct! Congratulations");
-                amountOfGuesses += 1;
-                guessAmountLabel.setText(Integer.toString(amountOfGuesses));
-                if(firstgame){
-                    highscoreLabel.setText(Integer.toString(amountOfGuesses));
-                    firstgame = false;
-                }
-                if(amountOfGuesses < Integer.parseInt(highscoreLabel.getText())){
-                    highscoreLabel.setText(Integer.toString(amountOfGuesses));
-                }
-                //String[] outpt = data.split("\\|");
-                // do a highscore data file and read in values here
-
-                //readHighscore();
-                //highScore.add(amountOfGuesses + name.getText());
-                //System.out.println(highScoreData);
-                //highScoreData.add(amountOfGuesses);
-                //System.out.println(highScoreData);
-                //System.out.println("hashmap" + playerData);
-                playerData.put(name.getText() + " | "+elapsedTime + "s" + " | Guesses", amountOfGuesses);
-                //readHashMap();
-                sortHashMap();
-                writeHighscoreData();
-                //writeHighscoreData();
-                printHashMapValue();
-                printHashMapKeySet();
-                System.out.println(sortedMap.getClass());
-                //sortHashMap();
-                //writeHighscoreData(); fixa denna s[ den skirver t fil korrekt
-                //writeHighscore();
-
-                //System.out.println(highScore);
-                //for (int i = 0; i < highScore.toArray().length ; i++)
-                //    jTextArea2.setText(data + i);
-                    // System.out.println(highScore.get(i));
-
-                //System.out.println(Arrays.toString(outpt));
-                //jTextArea2.setText("");
-                //readFile("highscores.txt");
-                //jTextArea2.setText(data + "nytt highscore");
-
-                /*FileWriter myWriter;
-                String outputtext = "";
-                try {
-                    ArrayList<String> highscore = new ArrayList<>();
-                    highscore.add(amountOfGuesses + name.getText());
-                    //fileContent += name.getText() + " | " + amountOfGuesses +"\n";
-                    myWriter = new FileWriter("highscores.txt");
-                    Scanner scan = new Scanner("highscores.txt");
-                    for (String str : highscore) {
-                        fileContent += str + "\n" ;
-                    }
-                    System.out.println(fileContent);
-                    myWriter.write(fileContent);
-                    myWriter.close();
-                    readFile("highscores.txt");
-                } catch (IOException ex) {
-                    Logger.getLogger(ActualGameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
-                
-                
-                //sätt highscore
-            }
-       
-         
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guessBtnActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        amountOfGuesses = 0;
-        guessAmountLabel.setText("0");
-        Random random = new Random();
-        if(difficultyLabel.getText() == "easy"){
-                numberToGuess = random.nextInt(1,2);
-            } else if(difficultyLabel.getText() == "medium"){
-                numberToGuess = random.nextInt(1,101);
-               
-            } else if(difficultyLabel.getText() == "hard"){
-                numberToGuess = random.nextInt(1,1001);
-            } else if(difficultyLabel.getText() == "IMPOSSIBLE"){
-                numberToGuess = random.nextInt(1,10001);
-            }
-        feedbackArea.setText("Good luck!");
-        startTime = System.currentTimeMillis();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
-    private void feedbackAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedbackAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_feedbackAreaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -534,7 +560,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel difficultyLabel;
+    private javax.swing.JLabel difficultyLabel;
     private javax.swing.JTextField feedbackArea;
     private javax.swing.JLabel guessAmount;
     private javax.swing.JLabel guessAmountLabel;
@@ -547,9 +573,11 @@ public class ActualGameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField name;

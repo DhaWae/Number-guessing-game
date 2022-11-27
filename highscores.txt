@@ -3,7 +3,9 @@ Enter name here | 2s | Guesses:1
 Enter name here | 9s | Guesses:2
 es | 5s | Guesses:2
 es | 4s | Guesses:2
+Jesper1234 | 3s | Guesses:2
 asdasdas | 9s | Guesses:3
 Enter name here | 4s | Guesses:5
 Enter name fffhere | 8s | Guesses:6
+Enter name here | 15s | Guesses:6
 Enter name here | 6s | Guesses:8
