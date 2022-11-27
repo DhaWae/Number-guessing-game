@@ -237,6 +237,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
         jTextArea2.setToolTipText("");
+        jTextArea2.setFocusable(false);
         jTextArea2.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(jTextArea2);
 
@@ -566,8 +567,6 @@ public class ActualGameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;

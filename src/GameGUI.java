@@ -70,7 +70,11 @@ public class GameGUI extends javax.swing.JFrame {
         playButton.setText("PLAY");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
+                try {
+                    playButtonActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -90,7 +94,6 @@ public class GameGUI extends javax.swing.JFrame {
         easyBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         easyBtn.setForeground(new java.awt.Color(0, 0, 0));
         easyBtn.setText("Easy");
-        easyBtn.setRequestFocusEnabled(false);
         easyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 easyBtnActionPerformed(evt);
@@ -121,7 +124,6 @@ public class GameGUI extends javax.swing.JFrame {
         mediumBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         mediumBtn.setForeground(new java.awt.Color(0, 0, 0));
         mediumBtn.setText("Medium");
-        mediumBtn.setRequestFocusEnabled(false);
         mediumBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mediumBtnActionPerformed(evt);
