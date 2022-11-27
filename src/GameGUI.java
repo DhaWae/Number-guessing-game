@@ -273,7 +273,7 @@ public class GameGUI extends javax.swing.JFrame {
         Random random = new Random();
             //String difficulty = difficultyTransfer;
         switch (difficultyTransfer) {
-            case "easy" -> gameGUI.numberToGuess = random.nextInt(1, 11);
+            case "easy" -> gameGUI.numberToGuess = random.nextInt(1, 2);
             case "medium" -> gameGUI.numberToGuess = random.nextInt(1, 101);
             case "hard" -> gameGUI.numberToGuess = random.nextInt(1, 1001);
             case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
@@ -283,6 +283,7 @@ public class GameGUI extends javax.swing.JFrame {
         setVisible(false);
         gameGUI.setVisible(true);
         gameGUI.difficultyLabel.setText(difficultyTransfer);
+        gameGUI.startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_playButtonActionPerformed

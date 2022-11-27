@@ -19,6 +19,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
 
     int numberToGuess;
     int amountOfGuesses;
+    long startTime;
+    long elapsedTime;
     Boolean firstgame = true;
     String fileContent = "";
     int highscoreRating;
@@ -54,7 +56,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     }
     //ArrayList<String> highScore = new ArrayList<String>();
     //ArrayList<Integer> highScoreData = new ArrayList<Integer>();
-    HashMap<Integer, String> playerData = new HashMap<Integer, String>();
+    HashMap<String, Integer> playerData = new HashMap<String, Integer>();
     /*
     public void readHighscoreData() throws FileNotFoundException {
         Scanner s = new Scanner(new File("highscoredata.txt"));
@@ -90,13 +92,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
      *///metoder som användes när jag inte använde mig av en hashmap
     //skriver ut hashmapens key
     public void printHashMapKeySet(){
-        for (Integer i : playerData.keySet()) {
+        for (String i : playerData.keySet()) {
             System.out.println("key: " + i);
         }
     }
     //skriver ut hashmapens value
     public void printHashMapValue(){
-        for (Integer i : playerData.keySet()) {
+        for (String i : playerData.keySet()) {
             System.out.println("value: " + playerData.get(i));
         }
     }
@@ -122,13 +124,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
             {
                 String key = parts[0];
                 String value = parts[1];
-                playerData.put(Integer.valueOf(key), value);
+                playerData.put(key, Integer.valueOf(value));
             } else {
                 System.out.println("ignoring line: " + line);
             }
         }
         String outputText = "";
-        for (Integer key : playerData.keySet())
+        for (String key : playerData.keySet())
         {
             System.out.println(key + ":" + playerData.get(key));
             outputText += key + ":" + playerData.get(key) + "\n";
@@ -137,6 +139,9 @@ public class ActualGameGUI extends javax.swing.JFrame {
         reader.close();
     }
 
+    public void sortHashMap(){
+
+    }
 
 
 
@@ -386,6 +391,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 amountOfGuesses += 1;
                 guessAmountLabel.setText(Integer.toString(amountOfGuesses));
             }else{
+
+                elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
                 feedbackArea.setText("You are correct! Congratulations");
                 amountOfGuesses += 1;
                 guessAmountLabel.setText(Integer.toString(amountOfGuesses));
@@ -405,7 +412,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 //highScoreData.add(amountOfGuesses);
                 //System.out.println(highScoreData);
                 //System.out.println("hashmap" + playerData);
-                playerData.put(amountOfGuesses, name.getText());
+                playerData.put(name.getText() + " | "+elapsedTime + "s" + " | Guesses", amountOfGuesses);
                 readHashMap();
                 //writeHighscoreData();
                 printHashMapValue();
@@ -458,8 +465,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         guessAmountLabel.setText("0");
         Random random = new Random();
         if(difficultyLabel.getText() == "easy"){
-                numberToGuess = random.nextInt(1,11);
-            
+                numberToGuess = random.nextInt(1,2);
             } else if(difficultyLabel.getText() == "medium"){
                 numberToGuess = random.nextInt(1,101);
                
@@ -469,7 +475,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 numberToGuess = random.nextInt(1,10001);
             }
         feedbackArea.setText("Good luck!");
-        
+        startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
