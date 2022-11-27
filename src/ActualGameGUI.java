@@ -236,6 +236,8 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
+        jTextArea2.setToolTipText("");
+        jTextArea2.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(jTextArea2);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
