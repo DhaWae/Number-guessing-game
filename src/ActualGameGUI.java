@@ -34,6 +34,17 @@ public class ActualGameGUI extends javax.swing.JFrame {
     Boolean firstgame = true;
     String fileContent = "";
     int highscoreRating;
+    Boolean counting = true;
+    Long startTimee;
+    public void count(){
+        Long startTimee = System.currentTimeMillis();
+
+        while(counting){
+
+            //elapsedTimeLabel.setText(Integer.parseInt();
+        }
+        Long elapsedTimee = ((System.currentTimeMillis() - startTime)/1000)%60;
+    }
 
     //gör att olika tid och difficulty ger olika poäng och ranka de i highscore list efter det
     public ActualGameGUI() {
@@ -217,6 +228,9 @@ public class ActualGameGUI extends javax.swing.JFrame {
         difficultyLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        elapsedTimeLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        highscoreMode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -262,7 +276,6 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jLabel3.setText("Difficulty:");
 
         guessAmountLabel.setForeground(new java.awt.Color(255, 255, 255));
-        guessAmountLabel.setText("guessamount");
 
         jButton2.setText("New Game");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +299,6 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jLabel4.setText("Name | Time | Guesses");
 
         difficultyLabel.setForeground(new java.awt.Color(255, 255, 255));
-        difficultyLabel.setText("jLabel5");
 
         jPanel4.setBackground(new java.awt.Color(153, 255, 0));
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 1));
@@ -305,6 +317,14 @@ public class ActualGameGUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Elapsed Time:");
+
+        elapsedTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        elapsedTimeLabel.setText(" ");
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Highscores for mode:");
+
+        highscoreMode.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -328,10 +348,18 @@ public class ActualGameGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(difficultyLabel))
-                            .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(elapsedTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(highscoreMode))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(108, 108, 108)
@@ -372,7 +400,9 @@ public class ActualGameGUI extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(difficultyLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(elapsedTimeLabel))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -384,7 +414,10 @@ public class ActualGameGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
+                    .addComponent(highscoreMode))
                 .addGap(10, 10, 10))
         );
 
@@ -423,6 +456,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
             numberToGuess = random.nextInt(1,10001);
         }
         feedbackArea.setText("Good luck!");
+        count();
         startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:
@@ -439,7 +473,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
             amountOfGuesses += 1;
             guessAmountLabel.setText(Integer.toString(amountOfGuesses));
         }else{
-            
+            counting = false;
             elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
 
             feedbackArea.setText("You are correct! Congratulations");
@@ -569,11 +603,13 @@ public class ActualGameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel difficultyLabel;
+    private javax.swing.JLabel elapsedTimeLabel;
     public javax.swing.JTextField feedbackArea;
     private javax.swing.JLabel guessAmount;
     private javax.swing.JLabel guessAmountLabel;
     private javax.swing.JButton guessBtn;
     private javax.swing.JSpinner guessingInput;
+    public javax.swing.JLabel highscoreMode;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -582,6 +618,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

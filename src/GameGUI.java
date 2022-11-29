@@ -288,6 +288,7 @@ public class GameGUI extends javax.swing.JFrame {
         setVisible(false);
         gameGUI.setVisible(true);
         gameGUI.difficultyLabel.setText(difficultyTransfer);
+        gameGUI.highscoreMode.setText(difficultyTransfer);
         gameGUI.startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:

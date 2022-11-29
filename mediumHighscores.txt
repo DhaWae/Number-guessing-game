@@ -1,1 +1,3 @@
+sdsd | 10s | Guesses:5
+Edvin | 26s | Guesses:7
 Jesper | 26s | Guesses:10
