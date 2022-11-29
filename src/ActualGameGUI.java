@@ -45,14 +45,19 @@ public class ActualGameGUI extends javax.swing.JFrame {
 
     public void createHighscoreFile() {
 
-        File highscore = new File("highscores.txt");
-
+        File easyHighscore = new File("easyHighscores.txt");
+        File mediumHighscore = new File("mediumHighscores.txt");
+        File hardHighscore = new File("hardHighscores.txt");
+        File impossibleHighscore = new File("impossibleHighscores.txt");
         try {
-            highscore.createNewFile();
+            easyHighscore.createNewFile();
+            mediumHighscore.createNewFile();
+            hardHighscore.createNewFile();
+            impossibleHighscore.createNewFile();
             //highscore.createNewFile()) {
 
         } catch (IOException ex) {
-
+            System.out.println("File already exists.");
         }
 
 
@@ -113,7 +118,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
         }
     }
     public void writeHighscoreData() throws IOException {
-        FileWriter myWriter = new FileWriter("highscores.txt");
+        FileWriter myWriter = new FileWriter(filePath);
 
         myWriter.write(jTextArea2.getText());
         myWriter.close();
@@ -123,10 +128,21 @@ public class ActualGameGUI extends javax.swing.JFrame {
     * den split metoden på första förekomsten av ":" och om det inte finns ignoreras raden.
     * På detta sätt får jag in det från textfilen och sätter tillbaks det i hashmapen playerData
     * för att vi sedan har datan där för sortering. */
+    String filePath;
+    public void filePath(String dif){
+        switch (dif) {
+            case "easy" -> filePath = "easyHighscores.txt";
+            case "medium" -> filePath = "mediumHighscores.txt";
+            case "hard" ->  filePath = "hardHighscores.txt";
+            case "IMPOSSIBLE" -> filePath = "impossibleHighscores.txt";
+        }
+    }
     public void readHashMap() throws IOException {
-        String filePath = "highscores.txt";
+
+
+
         String line;
-        BufferedReader reader = new BufferedReader(new FileReader("highscores.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
         while ((line = reader.readLine()) != null)
         {
             String[] parts = line.split(":", 2);
@@ -501,7 +517,7 @@ public class ActualGameGUI extends javax.swing.JFrame {
     public void readFile(String fileName){
         //data = "";
         try {
-            File myObj = new File("highscores.txt");
+            File myObj = new File(filePath);
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {

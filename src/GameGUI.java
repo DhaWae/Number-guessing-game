@@ -271,8 +271,9 @@ public class GameGUI extends javax.swing.JFrame {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_playButtonActionPerformed
         //jPanel1.setVisible(false);
         gameGUI.createHighscoreFile();
+        gameGUI.filePath(difficultyTransfer);
         //gameGUI.fileContent = "Name | Guesses | Time | Diffiuclty \n";
-        gameGUI.readFile("highscores.txt");
+        gameGUI.readFile(gameGUI.filePath);
         Random random = new Random();
             //String difficulty = difficultyTransfer;
         switch (difficultyTransfer) {
