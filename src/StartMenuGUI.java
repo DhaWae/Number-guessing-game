@@ -17,7 +17,7 @@ import java.util.Random;
 public class StartMenuGUI extends javax.swing.JFrame {
 
     
-    GameGUI actualGameGUI = new GameGUI();
+    GameGUI gameGUI = new GameGUI();
 
     String difficulty = "";
 
@@ -26,6 +26,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     public StartMenuGUI() {
         initComponents();
+        playButton.setEnabled(false);
     }
 
     /**
@@ -87,6 +88,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         easyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 easyBtnActionPerformed(evt);
+                playButton.setEnabled(true);
             }
         });
 
@@ -97,6 +99,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         hardBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hardBtnActionPerformed(evt);
+                playButton.setEnabled(true);
             }
         });
 
@@ -107,6 +110,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         impBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 impBtnActionPerformed(evt);
+                playButton.setEnabled(true);
             }
         });
 
@@ -117,6 +121,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         mediumBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mediumBtnActionPerformed(evt);
+                playButton.setEnabled(true);
             }
         });
 
@@ -250,25 +255,27 @@ public class StartMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_easyBtnActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_playButtonActionPerformed
-        actualGameGUI.createHighscoreFile();
-        actualGameGUI.filePath(difficulty);
-        actualGameGUI.readFile(actualGameGUI.filePath);
+        gameGUI.createHighscoreFile();
+        gameGUI.filePath(difficulty);
+        gameGUI.readFile(gameGUI.filePath);
         Random random = new Random();
 
         switch (difficulty) {
-            case "easy" -> actualGameGUI.numberToGuess = random.nextInt(1, 11);
-            case "medium" -> actualGameGUI.numberToGuess = random.nextInt(1, 101);
-            case "hard" -> actualGameGUI.numberToGuess = random.nextInt(1, 1001);
-            case "IMPOSSIBLE" -> actualGameGUI.numberToGuess = random.nextInt(1, 10001);
+            case "easy" -> gameGUI.numberToGuess = random.nextInt(1, 11);
+            case "medium" -> gameGUI.numberToGuess = random.nextInt(1, 101);
+            case "hard" -> gameGUI.numberToGuess = random.nextInt(1, 1001);
+            case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
         }
 
-        System.out.println(actualGameGUI.numberToGuess);
-        actualGameGUI.readHashMap();
+        //System.out.println(gameGUI.numberToGuess);
+        gameGUI.readHashMap();
         setVisible(false);
-        actualGameGUI.setVisible(true);
-        actualGameGUI.difficultyLabel.setText(difficulty);
-        actualGameGUI.highscoreMode.setText(difficulty);
-        actualGameGUI.startTime = System.currentTimeMillis();
+        gameGUI.setVisible(true);
+        gameGUI.guessAmountLabel.setText("0");
+        gameGUI.difficultyLabel.setText(difficulty);
+        gameGUI.highscoreMode.setText(difficulty);
+        gameGUI.feedbackArea.setText("Good luck!");
+        gameGUI.startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_playButtonActionPerformed

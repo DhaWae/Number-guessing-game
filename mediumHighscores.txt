@@ -1,4 +1,5 @@
 sss | 27s | Guesses:1
+test | 9s | Guesses:1
 Hej | 10s | Guesses:3
 sdsd | 10s | Guesses:5
 Edvin | 26s | Guesses:7

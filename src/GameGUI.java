@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -48,15 +48,6 @@ public class GameGUI extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("File already exists.");
         }
-
-
-        File highscoredata = new File("highscoredata.txt");
-        try {
-            highscoredata.createNewFile();
-        } catch (IOException ex) {
-
-        }
-
     }
     HashMap<String, Integer> playerData = new LinkedHashMap<String, Integer>();
     /* Använt för testning
@@ -210,6 +201,15 @@ public class GameGUI extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+                StartMenuGUI startMenu = new StartMenuGUI();
+                startMenu.setVisible(true);
+                dispose();
             }
         });
 
@@ -391,12 +391,10 @@ public class GameGUI extends javax.swing.JFrame {
         }else{
             jPanel4.setBackground(new java.awt.Color(78, 255, 0));
             elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
-
             feedbackArea.setText("You are correct! Congratulations");
             String name = JOptionPane.showInputDialog(this, "Enter your name:");
             amountOfGuesses += 1;
             guessAmountLabel.setText(Integer.toString(amountOfGuesses));
-
             playerData.put(name + " | "+elapsedTime + "s" + " | Guesses", amountOfGuesses);
             sortHashMap();
             try {
@@ -404,9 +402,6 @@ public class GameGUI extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            System.out.println(sortedMap.getClass());
-
         }
 
         // TODO add your handling code here:
@@ -471,7 +466,7 @@ public class GameGUI extends javax.swing.JFrame {
     public javax.swing.JLabel difficultyLabel;
     public javax.swing.JTextField feedbackArea;
     private javax.swing.JLabel guessAmount;
-    private javax.swing.JLabel guessAmountLabel;
+    public javax.swing.JLabel guessAmountLabel;
     private javax.swing.JButton guessBtn;
     private javax.swing.JSpinner guessingInput;
     public javax.swing.JLabel highscoreMode;
