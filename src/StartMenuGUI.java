@@ -17,12 +17,12 @@ import java.util.Random;
 public class StartMenuGUI extends javax.swing.JFrame {
 
     
-    GameGUI gameGUI = new GameGUI();
+    GameGUI actualGameGUI = new GameGUI();
 
     String difficulty = "";
 
     /**
-     * Creates new form GameGUI
+     * Creates new form ActualGameGUI
      */
     public StartMenuGUI() {
         initComponents();
@@ -250,25 +250,25 @@ public class StartMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_easyBtnActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_playButtonActionPerformed
-        gameGUI.createHighscoreFile();
-        gameGUI.filePath(difficulty);
-        gameGUI.readFile(gameGUI.filePath);
+        actualGameGUI.createHighscoreFile();
+        actualGameGUI.filePath(difficulty);
+        actualGameGUI.readFile(actualGameGUI.filePath);
         Random random = new Random();
 
         switch (difficulty) {
-            case "easy" -> gameGUI.numberToGuess = random.nextInt(1, 11);
-            case "medium" -> gameGUI.numberToGuess = random.nextInt(1, 101);
-            case "hard" -> gameGUI.numberToGuess = random.nextInt(1, 1001);
-            case "IMPOSSIBLE" -> gameGUI.numberToGuess = random.nextInt(1, 10001);
+            case "easy" -> actualGameGUI.numberToGuess = random.nextInt(1, 11);
+            case "medium" -> actualGameGUI.numberToGuess = random.nextInt(1, 101);
+            case "hard" -> actualGameGUI.numberToGuess = random.nextInt(1, 1001);
+            case "IMPOSSIBLE" -> actualGameGUI.numberToGuess = random.nextInt(1, 10001);
         }
 
-        System.out.println(gameGUI.numberToGuess);
-        gameGUI.readHashMap();
+        System.out.println(actualGameGUI.numberToGuess);
+        actualGameGUI.readHashMap();
         setVisible(false);
-        gameGUI.setVisible(true);
-        gameGUI.difficultyLabel.setText(difficulty);
-        gameGUI.highscoreMode.setText(difficulty);
-        gameGUI.startTime = System.currentTimeMillis();
+        actualGameGUI.setVisible(true);
+        actualGameGUI.difficultyLabel.setText(difficulty);
+        actualGameGUI.highscoreMode.setText(difficulty);
+        actualGameGUI.startTime = System.currentTimeMillis();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_playButtonActionPerformed
@@ -299,6 +299,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(StartMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

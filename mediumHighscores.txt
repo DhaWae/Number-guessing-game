@@ -1,4 +1,6 @@
 sss | 27s | Guesses:1
+Hej | 10s | Guesses:3
 sdsd | 10s | Guesses:5
 Edvin | 26s | Guesses:7
+Js | 17s | Guesses:8
 Jesper | 26s | Guesses:10

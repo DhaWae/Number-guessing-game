@@ -158,8 +158,6 @@ public class GameGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         difficultyLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        elapsedTimeLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         highscoreMode = new javax.swing.JLabel();
 
@@ -231,7 +229,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         difficultyLabel.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel4.setBackground(new java.awt.Color(153, 255, 0));
+        jPanel4.setBackground(new java.awt.Color(87, 169, 190));
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -244,13 +242,6 @@ public class GameGUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Elapsed Time:");
-
-        elapsedTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        elapsedTimeLabel.setText(" ");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Highscores for mode:");
@@ -278,11 +269,7 @@ public class GameGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(difficultyLabel))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(elapsedTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(difficultyLabel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -330,11 +317,7 @@ public class GameGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(difficultyLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(elapsedTimeLabel))
-                .addGap(37, 37, 37)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -396,15 +379,17 @@ public class GameGUI extends javax.swing.JFrame {
     private void guessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessBtnActionPerformed
         int inputValue = (int) guessingInput.getValue();
         if (inputValue > numberToGuess){
+            jPanel4.setBackground(new java.awt.Color(178, 0, 0));
             feedbackArea.setText("You are too high!");
             amountOfGuesses += 1;
             guessAmountLabel.setText(Integer.toString(amountOfGuesses));
         }else if(inputValue < numberToGuess){
+            jPanel4.setBackground(new java.awt.Color(178, 0, 0));
             feedbackArea.setText("You are too low!");
             amountOfGuesses += 1;
             guessAmountLabel.setText(Integer.toString(amountOfGuesses));
         }else{
-
+            jPanel4.setBackground(new java.awt.Color(78, 255, 0));
             elapsedTime = ((System.currentTimeMillis() - startTime)/1000)%60;
 
             feedbackArea.setText("You are correct! Congratulations");
@@ -472,6 +457,7 @@ public class GameGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -483,7 +469,6 @@ public class GameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel difficultyLabel;
-    private javax.swing.JLabel elapsedTimeLabel;
     public javax.swing.JTextField feedbackArea;
     private javax.swing.JLabel guessAmount;
     private javax.swing.JLabel guessAmountLabel;
@@ -496,7 +481,6 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
