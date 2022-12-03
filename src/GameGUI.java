@@ -16,15 +16,14 @@ import java.util.Random;
  */
 public class GameGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ActualGameGUI
-     */
-
+    Boolean generateNumber = false;
+    String data = "";
     int numberToGuess;
     int amountOfGuesses;
     long startTime;
     long elapsedTime;
     String fileContent = "";
+    String filePath;
 
     public GameGUI() {
 
@@ -49,7 +48,7 @@ public class GameGUI extends javax.swing.JFrame {
             System.out.println("File already exists.");
         }
     }
-    HashMap<String, Integer> playerData = new LinkedHashMap<String, Integer>();
+
     /* Använt för testning
     //skriver ut hashmapens key
     public void printHashMapKeySet(){
@@ -76,7 +75,7 @@ public class GameGUI extends javax.swing.JFrame {
     * den split metoden på första förekomsten av ":" och om det inte finns ignoreras raden.
     * På detta sätt får jag in det från textfilen och sätter tillbaks det i hashmapen playerData
     * för att vi sedan har datan där för sortering. */
-    String filePath;
+
     public void filePath(String dif){
         switch (dif) {
             case "easy" -> filePath = "easyHighscores.txt";
@@ -85,6 +84,7 @@ public class GameGUI extends javax.swing.JFrame {
             case "IMPOSSIBLE" -> filePath = "impossibleHighscores.txt";
         }
     }
+    HashMap<String, Integer> playerData = new LinkedHashMap<String, Integer>();
     public void readHashMap() throws IOException {
         String line;
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -116,7 +116,7 @@ public class GameGUI extends javax.swing.JFrame {
         String outputText = "";
         for (String key : sortedMap.keySet())
         {
-            System.out.println(key + ":" + sortedMap.get(key));
+            //System.out.println(key + ":" + sortedMap.get(key));
             outputText += key + ":" + sortedMap.get(key) + "\n";
         }
         jTextArea2.setText(outputText);
@@ -406,8 +406,6 @@ public class GameGUI extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_guessBtnActionPerformed
-    Boolean generateNumber = false;
-    String data = "";
     public void readFile(String fileName){
 
         try {

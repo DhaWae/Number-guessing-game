@@ -15,11 +15,9 @@ import java.util.Random;
  * @author jesper.rudegran
  */
 public class StartMenuGUI extends javax.swing.JFrame {
-
-    
     GameGUI gameGUI = new GameGUI();
-
     String difficulty = "";
+
 
     /**
      * Creates new form ActualGameGUI
